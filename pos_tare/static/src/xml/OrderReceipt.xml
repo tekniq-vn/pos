@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-foreach='receipt.orderlines']/t[2]/div[last()]" position="before">
+            <t t-if="line.tare_quantity !== 0">
+                <div class="pos-receipt-left-padding">
+                    <small>
+                        (<t t-esc="Math.round(line.gross_quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                        <t t-if="!line.is_in_unit" t-esc="line.unit_name"/> - 
+                        <t t-esc="Math.round(line.tare_quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                        <t t-if="!line.is_in_unit" t-esc="line.unit_name"/>)
+                    </small>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
