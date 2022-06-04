@@ -17,6 +17,7 @@
     'qweb': [
         'static/src/xml/TareScreenButton.xml',
         'static/src/xml/TareScreen.xml',
+        'static/src/xml/TareLabel.xml',
     ],
     'installable': True,
 }

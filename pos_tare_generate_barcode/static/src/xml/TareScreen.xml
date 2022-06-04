@@ -2,31 +2,24 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="TareScreen" owl="1">
-        <div class="scale-screen screen">
+        <div class="scale-screen tare-screen screen">
             <div class="screen-content">
                 <div class="top-content">
                     <span class="button back" t-on-click="back">
                         <i class="fa fa-angle-double-left"></i>
                         Back
                     </span>
-                    <h1 class="product-name">
-                        <t t-esc="productName" />
-                    </h1>
+                    <h1>Print a tare label</h1>
                 </div>
                 <div class="centered-content">
-                    <div class="weight js-weight">
+                    <!--div class="pos-tare-label-container">
+                        <TareLabel t-ref="tare-label"/>
+                    </div-->
+                    <div class="weight js-weight">  
                         <t t-esc="productWeightString" />
                     </div>
-                    <div class="product-price">
-                        <t
-                           t-esc="env.pos.format_currency(productPrice) + '/' + productUom" />
-                    </div>
-                    <div class="computed-price">
-                        <t t-esc="computedPriceString" />
-                    </div>
-                    <div class="buy-product" t-on-click="confirm">
-                        Order
-                        <i class="fa fa-angle-double-right"></i>
+                    <div class="print-label" t-on-click="printLabel">
+                        <i class="fa fa-print"></i> Print Label
                     </div>
                 </div>
             </div>
