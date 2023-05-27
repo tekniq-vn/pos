@@ -76,16 +76,10 @@ odoo.define("pos_tare.ProductScreen", function (require) {
                 return options;
             }
             _barcodeTareAction(code) {
-                try {
-                    var last_orderline = this.currentOrder.get_last_orderline();
-                    if (last_orderline) {
-                        last_orderline.set_tare(code.value, true);
-                    }
-                } catch (error) {
-                    this.showPopup('ErrorPopup', {
-                        title: this.env._t("We can not apply this tare barcode."),
-                        body: error.message,
-                    });
+                if (!this.props.isShown) return;
+                var last_orderline = this.currentOrder.get_last_orderline();
+                if (last_orderline) {
+                    last_orderline.set_tare(code.value, true);
                 }
             }
         };

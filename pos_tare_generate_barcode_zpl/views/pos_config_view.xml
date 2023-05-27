@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<odoo>
+
+    <record model="ir.ui.view" id="view_pos_config_form">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="priority" eval="30"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='iface_tare_label']/following-sibling::*[position()=1]" position="after">
+                <div class="content-group mt16" attrs="{'invisible' : [('iface_tare_label', '=', False)]}">
+                    <div class="row">
+                        <label for="iface_tare_label_zpl" class="col-lg-4 o_light_label"/>
+                        <field name="iface_tare_label_zpl"/>
+                    </div>
+                    <div class="row" attrs="{'invisible' : [('iface_tare_label_zpl', '=', False)]}">
+                        <label for="iface_zpl_label_printer" class="col-lg-4 o_light_label"/>
+                        <field name="iface_zpl_label_printer" attrs="{'required' : [('iface_tare_label_zpl', '=', True)]}"/>
+                    </div>
+                    <div class="row" attrs="{'invisible' : [('iface_tare_label_zpl', '=', False)]}">
+                        <label for="iface_receipt_printer" class="col-lg-4 o_light_label"/>
+                        <field name="iface_receipt_printer" attrs="{'required' : [('iface_tare_label_zpl', '=', True)]}"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

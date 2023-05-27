@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--t t-name="TareLabel" owl="1"-->
+    <t t-name="TareLabelZpl">
+        <t t-translation="off">
+^XA
+^PW240
+^LH10,10
+^BY2,3.0
+^FO20,40
+^BEN,50,N,N
+^FD<t t-esc="widget.barcode"/>^FS
+^FO20,120
+^A1,10,10
+^FDtare = <t t-esc="widget.tareWeight" /><t t-esc="widget.env.pos.config.iface_tare_uom_id[1]"/>^FS
+^XZTareLabelZpl
+        </t>
+    </t>
+
+</templates>

@@ -1,0 +1,9 @@
+<odoo>
+    <template id="assets_backend" name="pos_barcode_tare" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/TareScreen.js"></script>
+                <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/devices.js"></script>
+                <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/printers.js"></script>
+            </xpath>
+    </template>
+</odoo>
