@@ -62,7 +62,7 @@ ADAMEquipmentProtocol = ScaleProtocol(
     parity=serial.PARITY_NONE,
     timeout=0.2,
     writeTimeout=0.2,
-    measureRegexp=b"\s*([0-9.]+)kg",  # LABEL format 3 + KG in the scale settings, but Label 1/2 should work
+    measureRegexp=rb"\s*([0-9.]+)kg",  # LABEL format 3 + KG in the scale settings, but Label 1/2 should work
     statusRegexp=None,
     commandTerminator=b"\r\n",
     commandDelay=0.2,
@@ -168,14 +168,13 @@ class ScaleDriver(SerialDriver):
         """
 
         answer = []
-        #while True:
-        #    char = connection.read(connection.in_waiting)
-        #    if not char:
-        #        break
-        #    else:
-        #        answer.append(bytes(char))
-        #return b''.join(answer)
-        return bytes(connection.read(connection.in_waiting))
+        while True:
+            char = connection.read(1)
+            if not char:
+                break
+            else:
+                answer.append(bytes(char))
+        return b''.join(answer)
 
     def _read_weight(self):
         """Asks for a new weight from the scale, checks if it is valid and, if it is, makes it the current value."""
@@ -183,17 +182,10 @@ class ScaleDriver(SerialDriver):
         protocol = self._protocol
         self._connection.write(protocol.measureCommand + protocol.commandTerminator)
         answer = self._get_raw_response(self._connection)
-        #match = re.search(self._protocol.measureRegexp, answer)
-        match = re.findall(self._protocol.measureRegexp, answer)
+        match = re.search(self._protocol.measureRegexp, answer)
         if match:
             self.data = {
-                #'value': float(match.group(1)),
-                'value': float(match[-1]),
-                'status': self._status
-            }
-        else:
-            self.data = {
-                'value': None,
+                'value': float(match.group(1)),
                 'status': self._status
             }
 
@@ -257,9 +249,8 @@ class AdamEquipmentDriver(ScaleDriver):
 
     def __init__(self, identifier, device):
         super(AdamEquipmentDriver, self).__init__(identifier, device)
-        self._is_reading = True
+        self._is_reading = False
         self._last_weight_time = 0
-        self.kept_value = None
         self.device_manufacturer = 'Adam'
 
     def _check_last_weight_time(self):
@@ -274,9 +265,8 @@ class AdamEquipmentDriver(ScaleDriver):
 
         if self.data['value'] is None:
             if time.time() - self._last_weight_time > TIME_WEIGHT_KEPT:
-                self.kept_value = self.data['value'] = 0
+                self.data['value'] = 0
         else:
-            self.kept_value = self.data['value']
             self._last_weight_time = time.time()
 
     def _take_measure(self):
@@ -296,11 +286,11 @@ class AdamEquipmentDriver(ScaleDriver):
     def _scale_read_old_route(self):
         """Used when the iot app is not installed"""
 
-        #time.sleep(3)
+        time.sleep(3)
         with self._device_lock:
             self._read_weight()
             self._check_last_weight_time()
-        return self.kept_value
+        return self.data['value']
 
     @classmethod
     def supported(cls, device):

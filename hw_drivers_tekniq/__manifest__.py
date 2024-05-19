@@ -12,7 +12,7 @@ ADAM Equipment Protocol Scales Hardware Driver
 =======================
 This module improves configurations of ADAM Equipment Protocol driver, helping communicate with more Adam scale models.
 """,
-    'depends': ['hw_drivers'],
-    'installable': False,
+    'depends': [],
+    'installable': True,
     'license': 'LGPL-3',
 }

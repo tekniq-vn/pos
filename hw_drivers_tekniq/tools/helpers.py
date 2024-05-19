@@ -11,8 +11,7 @@ from odoo.addons.hw_drivers.tools import helpers
 
 _logger = logging.getLogger(__name__)
 
-def patch_load_iot_handlers():
-    load_iot_handlers()
+def load_iot_handlers():
     """
     This method loads local files: 'odoo/addons/hw_drivers_tekniq/iot_handlers/drivers' and
     'odoo/addons/hw_drivers_tekniq/iot_handlers/interfaces'
@@ -32,4 +31,4 @@ def patch_load_iot_handlers():
                     _logger.error('An error encountered : %s ', e)
     lazy_property.reset_all(http.root)
 
-helpers.load_iot_handlers = patch_load_iot_handlers
+load_iot_handlers()

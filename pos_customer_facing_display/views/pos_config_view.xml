@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="view_pos_config_form">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="priority" eval="30"/>
+        <field name="arch" type="xml">
+            <!--xpath expr="//label[@for='iface_customer_facing_display']" position="replace">
+                <label string="Customer Display" for="iface_customer_facing_display_via_proxy" class="col-lg-4 o_light_label"/>
+            </xpath>
+            <xpath expr="//field[@name='iface_customer_facing_display']" position="replace">
+                <field name="iface_customer_facing_display_via_proxy"/>
+            </xpath-->
+            <xpath expr="//div[@id='other_devices']" position="after">
+                <div id="customer_display" class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="iface_customer_facing_display_local"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="iface_customer_facing_display_local" string="Customer Display"/>
+                        <div class="text-muted">
+                            Show checkout to customers through a second display
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
