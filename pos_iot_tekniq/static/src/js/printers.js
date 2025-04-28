@@ -1,4 +1,4 @@
-odoo.define('pos_tare_generte_barcode_zpl.Printer', function (require) {
+odoo.define('pos_iot_tekniq.Printer', function (require) {
 "use strict";
 
 var Printer = require('point_of_sale.Printer').Printer;

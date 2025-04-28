@@ -3,7 +3,7 @@
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/TareScreen.js"></script>
                 <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/devices.js"></script>
-                <script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/printers.js"></script>
+                <!--script type="text/javascript" src="/pos_tare_generate_barcode_zpl/static/src/js/printers.js"></script-->
             </xpath>
     </template>
 </odoo>

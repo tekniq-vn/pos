@@ -9,7 +9,7 @@
     'author': "Tekniq, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/pos",
     'license': 'AGPL-3',
-    'depends': ['pos_tare_generate_barcode'],
+    'depends': ['pos_iot_tekniq', 'pos_tare_generate_barcode'],
     'data': [
         'pos_tare_generate_barcode_zpl.xml',
         'views/pos_config_view.xml'

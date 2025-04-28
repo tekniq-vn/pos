@@ -22,6 +22,7 @@ odoo.define("pos_tare_generate_barcode_zpl.TareScreen", function (require) {
                 if (this.env.pos.proxy.zpl_printer) {
                     var label = QWeb.render('TareLabelZpl',{widget:this});
                     var raw = btoa(label);
+                    console.log(raw);
                     const printResult = await this.env.pos.proxy.zpl_printer.print_raw(raw);
                     if (printResult.successful) {
                         return true;

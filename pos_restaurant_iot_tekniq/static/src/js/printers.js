@@ -1,4 +1,4 @@
-odoo.define('pos_tare_generte_barcode_zpl.Printer', function (require) {
+odoo.define('pos_printer_identifier.Printer', function (require) {
 "use strict";
 
 var Printer = require('point_of_sale.Printer').Printer;
@@ -63,7 +63,6 @@ Printer.include({
 
     send_raw_printing_job: function(data) {
         if (this._identifier) {
-            console.log(data);
             return this.connection.rpc('/hw_drivers/action', {
                 session_id: 'POS',
                 device_identifier: this._identifier,

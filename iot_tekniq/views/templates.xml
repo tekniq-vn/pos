@@ -1,0 +1,6 @@
+<odoo>
+    <template id="assets_backend" name="pos_printer_identifier" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+            </xpath>
+    </template>
+</odoo>

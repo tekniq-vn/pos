@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<odoo>
+
+    <record model="ir.ui.view" id="view_pos_config_form">
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="priority" eval="30"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='iface_print_via_proxy']/.." position="after">
+                <div class="row" attrs="{'invisible' : [('iface_print_via_proxy', '=', False)]}">
+                    <label string="Printer Identifier" for="iface_printer_identifier" class="col-lg-4 o_light_label"/>
+                    <field name="iface_printer_identifier"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
